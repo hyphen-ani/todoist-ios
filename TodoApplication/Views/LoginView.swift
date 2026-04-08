@@ -8,8 +8,7 @@
 import SwiftUI
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
+@StateObject var viewModel = LoginViewViewModel()
     
     var body: some View {
         NavigationView {
@@ -18,10 +17,22 @@ struct LoginView: View {
                 HeaderView(title: "Todoist", subTitle: "jot things down", rotationAngle: 15, backgroundColor: .pink, fontColor: .white)
                 
                 //TODO: LOGIN FORM
+                
+                
                 Form {
-                    TextField("Email Address", text: $email)
-                    SecureField("Password", text: $password)
-                    CButton(title: "Login", backgroundColor: Color.black)
+                    
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundStyle(Color.red)
+                    }
+                    
+                    TextField("Email Address", text: $viewModel.email)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
+                    SecureField("Password", text: $viewModel.password)
+                    CButton(title: "Login", backgroundColor: Color.black) {
+                        viewModel.login()
+                    }
                 }
                 .scrollContentBackground(.hidden)
                 .background(Color.init(uiColor: .systemBackground))

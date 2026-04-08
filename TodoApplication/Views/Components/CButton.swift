@@ -11,10 +11,11 @@ struct CButton: View {
     
     let title: String
     let backgroundColor: Color
+    let action: () -> Void
     
     var body: some View {
         Button{
-            
+            action()
         } label: {
             ZStack{
                 RoundedRectangle(cornerRadius: 10)
@@ -25,11 +26,14 @@ struct CButton: View {
                     .foregroundColor(Color.white)
                     .bold()
             }
+            .padding()
             
         }
     }
 }
 
 #Preview {
-    CButton(title: "Title", backgroundColor: .black)
+    CButton(title: "Title", backgroundColor: .black){
+        // Action
+    }
 }

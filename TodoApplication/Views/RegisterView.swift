@@ -19,9 +19,16 @@ struct RegisterView: View {
             
             Form{
                 TextField("Full Name", text: $fullName)
+                    .autocorrectionDisabled()
                 TextField("Your Email Address", text: $email)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
                 SecureField("Password", text: $password)
-                CButton(title: "Create Account", backgroundColor: Color.black)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                CButton(title: "Create Account", backgroundColor: Color.black){
+                    
+                }
                 
                 
             }
