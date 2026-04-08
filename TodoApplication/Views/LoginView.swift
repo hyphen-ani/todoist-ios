@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct LoginView: View {
     
     @State var email = ""
@@ -22,19 +21,7 @@ struct LoginView: View {
                 Form {
                     TextField("Email Address", text: $email)
                     SecureField("Password", text: $password)
-                    Button {
-                        // Action
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.black)
-                                .frame(height: 50)
-                            
-                            Text("Login")
-                                .bold()
-                                .foregroundColor(Color.white)
-                        }
-                    }
+                    CButton(title: "Login", backgroundColor: Color.black)
                 }
                 .scrollContentBackground(.hidden)
                 .background(Color.init(uiColor: .systemBackground))
